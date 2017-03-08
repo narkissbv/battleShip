@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2017 at 09:47 PM
+-- Generation Time: Mar 08, 2017 at 09:44 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `u_id` varchar(20) NOT NULL DEFAULT '' COMMENT 'primary key',
+  `u_id` int(20) NOT NULL COMMENT 'primary key',
   `email` varchar(100) NOT NULL COMMENT 'user''s login credential',
   `password` varchar(40) NOT NULL COMMENT 'user''s password',
   `name` varchar(50) NOT NULL COMMENT 'user''s name'
@@ -44,6 +44,15 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`u_id`),
   ADD UNIQUE KEY `email` (`email`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `u_id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'primary key';
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
