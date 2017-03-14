@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2017 at 10:57 PM
+-- Generation Time: Mar 13, 2017 at 10:10 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `users` (
   `u_id` int(20) NOT NULL COMMENT 'primary key',
-  `email` varchar(100) CHARACTER SET utf8 NOT NULL COMMENT 'user''s login credential',
-  `password` varchar(40) CHARACTER SET utf8 NOT NULL COMMENT 'user''s password',
-  `name` varchar(50) CHARACTER SET utf8 NOT NULL COMMENT 'user''s name'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `email` varchar(100) NOT NULL COMMENT 'user''s login credential',
+  `password` varchar(40) NOT NULL COMMENT 'user''s password',
+  `name` varchar(50) NOT NULL COMMENT 'user''s name'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
