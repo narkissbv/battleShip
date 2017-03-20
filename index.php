@@ -9,7 +9,7 @@
     }
 ?>
         <h1>Welcome to Battle Ship!</h1>
-        <h2>Repo update test</h2>
+        <h2>Repo update tes 2t</h2>
 <?php
     mysqli_close($link);
 ?>
