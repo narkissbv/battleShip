@@ -8,8 +8,13 @@
         exit;
     }
 	// Perform queries 
-	$sql = "INSERT INTO Users (email,password,name) VALUES ('tommershahar5@gmail.com','12345','Tomer Shahar5')";
-	mysqli_query($link,$sql);
+	$sql = "SELECT name FROM Users";
+	$result = mysqli_query($link,$sql);
+
+	while ($row = mysqli_fetch_row($result))
+	 {
+		echo 'user name: ' .$row[0]. '<br/>';
+	 }
 
 	mysqli_close($link);
 ?>
