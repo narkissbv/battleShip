@@ -10,6 +10,7 @@
 ?>
         <h1>Welcome to Battle Ship!</h1>
         <h2>Repo update test 2</h2>
+        Lior lost his bet
 <?php
     mysqli_close($link);
 ?>
