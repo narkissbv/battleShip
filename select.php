@@ -8,7 +8,7 @@
         exit;
     }
 	// Perform queries 
-	$sql = "SELECT name FROM Users";
+	$sql = "SELECT name FROM users";
 	$result = mysqli_query($link,$sql);
 
 	while ($row = mysqli_fetch_row($result))
