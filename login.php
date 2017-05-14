@@ -11,10 +11,9 @@
 	$username=$_POST['username'];
 	$password=$_POST['password'];
 	$sql="SELECT * FROM Users WHERE name='$username' and password='$password'";
-	$result=mysqli_query($link,$sql);
-
+if ($result=mysqli_query($link,$sql)) {
 	$count=mysqli_num_rows($result);
-	if($count==1){
+	if($count>1){
 		$code = 200;
 		$rtn = array('success' => true, 'message' => 'login success');
 		session_start();
@@ -26,4 +25,6 @@
 	http_response_code($code);
     print json_encode($rtn);
 	mysqli_close($link);
+	
+}
 ?>
