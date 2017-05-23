@@ -10,26 +10,25 @@
 	
 	$username=$_POST['username'];
 	$password=$_POST['password'];
-	$sql="SELECT * FROM Users WHERE name='$username' and password='$password'";
+	$sql="SELECT * FROM users WHERE name='$username' and password='$password'";
 	if ($result=mysqli_query($link,$sql)) {
-		$count=mysqli_num_rows($result);
-		if($count>1){
+		if (mysqli_num_rows($result) > 1) {
 			$code = 200;
-			$rtn = array('success' => true, 'message' => 'login success');
+			$response = array('success' => true, 'message' => 'login success');
 			session_start();
+			$_SESSION['id'] = $result['id'];
+			$_SESSION['name'] = $result['name'];
 		}
-		else{
+		else {
 			$code = 404;
-			$rtn = array('success' => false, 'message' => 'login failed');
+			$response = array('success' => false, 'message' => 'login failed');
 		}
-		http_response_code($code);
-		print json_encode($rtn);
-		mysqli_close($link);
-		
 	}
 	else {
-		http_response_code(500);
-		print json_encode($rtn);
-		mysqli_close($link);	
+		$code = 500;
+		$response = array('success' => false, 'message' => 'Sql error' . mysqli_error($link));
 	}
+	http_response_code($code);
+	print json_encode($response);
+	mysqli_close($link);	
 ?>
