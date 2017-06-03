@@ -48,10 +48,10 @@
 				var postingUrl = (type == 'login')? 'login.php':'insert.php';
                 var posting = $.post(postingUrl, dataToSend);
 
-                posting.always(function(data) {
-					console.log(data);
-					data = JSON.parse(data);
-					 $("#result").empty().text(data.message);
+                posting.always(function(dataToSend) {
+					console.log(dataToSend);
+					dataToSend = JSON.parse(dataToSend);
+					 $("#result").empty().text(dataToSend.message);
 				})
             });
             $("#actionBtn").on('click',function(event) {
@@ -65,13 +65,13 @@
 				var formType = 'backToLogin';
 				if(type == 'backToLogin'){
 					$(this).attr('data-type','forgotPw')
-						.text('Back');
+						.text('Register');
 					$('.insert').hide();
 					pageTitle = 'Login';
 					formType = 'ForgotPw';
 					
 				}else{
-					$(this).attr('data-type','backToLogin').text('Forgot password');
+					$(this).attr('data-type','backToLogin').text('Back');
 					$('.insert').show();
 				}
 				//set new form and button type
