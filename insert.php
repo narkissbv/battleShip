@@ -7,6 +7,7 @@
         echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
         exit;
     }
+	echo('start');
 	// Perform queries 
 	$email = $_POST["email"];
 	//$password = $_POST["password"];
@@ -14,11 +15,13 @@
 	/* TODO: SALTING
 	$salt = use md5 or sha1 to randomly create a 5 char length string
 	*/
+	echo($email);
 	$salt = substr(md5(microtime()),rand(0,26),5);
 	$password = md5($_POST["password"] . $salt);
 	$sql = "INSERT INTO users (email,password,name,salt)
 			VALUES ('$email','$password','$name', $salt)";
 	mysqli_query($link,$sql);
-
+	echo(mysqli_error($link));
+	echo('end');
 	mysqli_close($link);
 ?>
