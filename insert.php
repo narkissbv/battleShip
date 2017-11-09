@@ -9,9 +9,9 @@
     }
 	echo('start');
 	// Perform queries 
-	$email = real_escape_string($link, $_POST["email"]);
-	$password = real_escape_string($link, $_POST["password"]);
-	$name = real_escape_string($link, $_POST["name"]);
+	$email = mysqli_real_escape_string($link, $_POST["email"]);
+	$password = mysqli_real_escape_string ($link, $_POST["password"]);
+	$name = mysqli_real_escape_string ($link, $_POST["name"]);
 	
 	echo($email);
 	$salt = substr(md5(microtime()),rand(0,26),5);
