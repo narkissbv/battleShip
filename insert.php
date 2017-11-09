@@ -9,15 +9,13 @@
     }
 	echo('start');
 	// Perform queries 
-	$email = $_POST["email"];
-	//$password = $_POST["password"];
-	$name = $_POST["name"];
-	/* TODO: SALTING
-	$salt = use md5 or sha1 to randomly create a 5 char length string
-	*/
+	$email = real_escape_string($link, $_POST["email"]);
+	$password = real_escape_string($link, $_POST["password"]);
+	$name = real_escape_string($link, $_POST["name"]);
+	
 	echo($email);
 	$salt = substr(md5(microtime()),rand(0,26),5);
-	$password = md5($_POST["password"] . $salt);
+	$password = md5($password . $salt);
 	$sql = "INSERT INTO users (email,password,name,salt)
 			VALUES ('$email','$password','$name', $salt)";
 	mysqli_query($link,$sql);

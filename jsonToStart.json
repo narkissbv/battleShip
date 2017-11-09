@@ -1,0 +1,15 @@
+{
+	"player_turn":"player_1",
+	"player_boards":[
+		"player_1":{
+			"ships":[
+				"ship_1":{
+					"type":"short_boat",
+					"locations":["h1","h2","h3"]
+					"ship_face":"h1"
+				}
+			],
+			"checked_locs":["a2","b3","h2"]
+		}
+	]
+}
