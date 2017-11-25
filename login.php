@@ -8,11 +8,12 @@
         exit;
     }
 	
-	$username=$_POST['username'];
-	$password=$_POST['password'];
-	$sql="SELECT * FROM users WHERE name='$username' and password='$password'";
+	$password = mysqli_real_escape_string ($link, $_POST["password"]);
+	$username = mysqli_real_escape_string ($link, $_POST["username"]);
+
+	$sql="SELECT* FROM users WHERE name = '$username' AND password = md5(CONCAT ('$password' , salt))";
 	if ($result=mysqli_query($link,$sql)) {
-		if (mysqli_num_rows($result) > 1) {
+		if (mysqli_num_rows($result) > 0) {
 			$code = 200;
 			$response = array('success' => true, 'message' => 'login success');
 			session_start();

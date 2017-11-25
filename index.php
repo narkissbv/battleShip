@@ -13,6 +13,7 @@
 <head>
 	<meta charset="utf-8" />
 	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<link rel="stylesheet" href="battleShip.css" />
 </head>
 <body>
 
@@ -21,7 +22,7 @@
 		<form action="/" data-type="login" id="loginForm">
             Username: <input class="field" type="text" name="name"><br>
 			Password: <input class="field" type="password" name="password"><br>
-			<div class="insert" style="display:none;">Email: <input class="field" type="email" name="email"></div><br>
+			<div class="insert">Email: <input class="field" type="email" name="email"></div><br>
 			<input type="submit">
         </form>
         <div id="actionBtn" data-type="forgotPw" style="text-decoration:underline;cursor:pointer">forgot password</div>
@@ -29,6 +30,7 @@
         <div id="result"></div>
         <script>
             $("#loginForm").submit(function(event) {
+			
                 event.preventDefault();
 				var type = $(this).attr('data-type');
                 var $form = $(this),
@@ -38,8 +40,11 @@
 				var dataToSend = {
                     password:pw
                 }
+				var email = $form.find('input[name="email"]').val();	
 				if(type == 'forgotPw'){
-                    var email = $form.find('input[name="email"]').val();
+					dataToSend.email = email;
+					dataToSend.name = un;
+				} else if(type == 'insert'){
 					dataToSend.email = email;
 					dataToSend.name = un;
 				}else{
@@ -50,8 +55,8 @@
 
                 posting.always(function(dataToSend) {
 					console.log(dataToSend);
-					dataToSend = JSON.parse(dataToSend);
-					 $("#result").empty().text(dataToSend.message);
+					//dataToSend = JSON.parse(dataToSend.responseText);
+					// $("#result").empty().text(dataToSend.message);
 				})
             });
             $("#actionBtn").on('click',function(event) {
@@ -79,7 +84,6 @@
 				$('h2').text(pageTitle);
 				
 			})
-			
         </script>
 </body></html>
 <?php

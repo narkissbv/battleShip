@@ -1,0 +1,6 @@
+#loginForm[data-type="insert"] .insert{
+	display:block;
+}
+#loginForm .insert{
+	display:none;
+}
