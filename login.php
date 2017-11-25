@@ -8,9 +8,15 @@
         exit;
     }
 	
-	$username=$_POST['username'];
-	$password=$_POST['password'];
-	$sql="SELECT * FROM users WHERE name='$username' and password='$password'";
+//$username=$_POST['username'];
+	//$password=$_POST['password'];
+	$password = mysqli_real_escape_string ($link, $_POST["password"]);
+	$username = mysqli_real_escape_string ($link, $_POST["username"]);
+	
+	$salt = mysqli_query($link,"SELECT `salt` FROM `users` WHERE `name` = '$username'");
+	$password = md5($password . $salt);
+	$sql="SELECT * FROM `users` WHERE `name`='$username' and `password`='$password'";
+	//$sql="SELECT * FROM users WHERE name='$username' and password='$password'";
 	if ($result=mysqli_query($link,$sql)) {
 		if (mysqli_num_rows($result) > 1) {
 			$code = 200;

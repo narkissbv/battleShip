@@ -17,7 +17,7 @@
 	$salt = substr(md5(microtime()),rand(0,26),5);
 	$password = md5($password . $salt);
 	$sql = "INSERT INTO users (email,password,name,salt)
-			VALUES ('$email','$password','$name', $salt)";
+			VALUES ('$email','$password','$name', '$salt')";
 	mysqli_query($link,$sql);
 	echo(mysqli_error($link));
 	echo('end');
