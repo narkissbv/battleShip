@@ -7,6 +7,11 @@
         echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
         exit;
     }
+	if (session_status() == PHP_SESSION_ACTIVE) {
+		echo 'Session is active';
+		header("Location: /main.html");
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,6 +60,10 @@
 
                 posting.always(function(dataToSend) {
 					console.log(dataToSend);
+					window.location.replace("/main.html");
+					//session destroy
+					//hello session
+					//redirect index php --> check if session alive and print hello "session" + logout(redirect to index.php). new page /games
 					//dataToSend = JSON.parse(dataToSend.responseText);
 					// $("#result").empty().text(dataToSend.message);
 				})
@@ -82,6 +91,14 @@
 				//set new form and button type
 				$('#loginForm').attr('data-type',type);
 				$('h2').text(pageTitle);
+				
+			})
+			$('#logout').on('click',function(){
+				<?php 
+					session_unset();
+					session_destroy();
+				?>
+				window.location.replace("/index.php");
 				
 			})
         </script>
