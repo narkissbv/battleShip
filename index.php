@@ -55,8 +55,8 @@
 
                 posting.always(function(dataToSend) {
 					console.log(dataToSend);
-					dataToSend = JSON.parse(dataToSend.responseText);
-					 $("#result").empty().text(dataToSend.message);
+					//dataToSend = JSON.parse(dataToSend.responseText);
+					// $("#result").empty().text(dataToSend.message);
 				})
             });
             $("#actionBtn").on('click',function(event) {
