@@ -7,11 +7,7 @@
         echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
         exit;
     }
-	if (session_status() == PHP_SESSION_ACTIVE) {
-		echo 'Session is active';
-		header("Location: /main.html");
-		exit();
-	}
+	session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,7 +56,7 @@
 
                 posting.always(function(dataToSend) {
 					console.log(dataToSend);
-					window.location.replace("/main.html");
+					window.location.replace("main.php");
 					//session destroy
 					//hello session
 					//redirect index php --> check if session alive and print hello "session" + logout(redirect to index.php). new page /games
@@ -94,12 +90,17 @@
 				
 			})
 			$('#logout').on('click',function(){
-				<?php 
-					session_unset();
-					session_destroy();
-				?>
+				//<?php 
+					// session_unset();
+					// session_destroy();
+				// ?>
 				window.location.replace("/index.php");
 				
+			})
+			$(document).ready(function(){
+				 $.ajax({
+					url: "session.php"
+				});
 			})
         </script>
 </body></html>
