@@ -21,6 +21,7 @@
 	mysqli_query($link,$sql);
 	session_start();
 	$_SESSION['id'] = mysqli_insert_id($link);
+	$_SESSION['name'] = $name;
 	echo(mysqli_error($link));
 	echo('end');
 	mysqli_close($link);

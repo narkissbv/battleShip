@@ -7,8 +7,10 @@
         echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
         exit;
     }
+	
 	session_start();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +32,7 @@
 		
         <div id="result"></div>
         <script>
+			
             $("#loginForm").submit(function(event) {
 			
                 event.preventDefault();
@@ -90,17 +93,15 @@
 				
 			})
 			$('#logout').on('click',function(){
-				//<?php 
-					// session_unset();
-					// session_destroy();
-				// ?>
 				window.location.replace("/index.php");
 				
 			})
 			$(document).ready(function(){
-				 $.ajax({
-					url: "session.php"
-				});
+				var name = "<?=  isset($_SESSION['name']) ? $_SESSION['name'] : false  ?>";
+				if(name){
+					window.location.replace("main.php");
+					$('#logout').text('logout')
+				}
 			})
         </script>
 </body></html>
