@@ -7,10 +7,9 @@
         echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
         exit;
     }
-	if (session_status() == PHP_SESSION_ACTIVE) {
-		$code = 200;
-		$response = array('success' => true, 'message' => 'login success');
-		header("Location: main.html");
+	if(isset($_SESSION['id'])){
+		$code = 300;
+		$response = array('success' => true, 'message' => 'login success', 'redirect' => 'main.php');
 	}
 	else {
 		$code = 404;

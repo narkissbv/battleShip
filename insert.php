@@ -19,6 +19,8 @@
 	$sql = "INSERT INTO users (email,password,name,salt)
 			VALUES ('$email','$password','$name', '$salt')";
 	mysqli_query($link,$sql);
+	session_start();
+	$_SESSION['id'] = mysqli_insert_id($link);
 	echo(mysqli_error($link));
 	echo('end');
 	mysqli_close($link);

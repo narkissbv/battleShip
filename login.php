@@ -11,7 +11,7 @@
 	$password = mysqli_real_escape_string ($link, $_POST["password"]);
 	$username = mysqli_real_escape_string ($link, $_POST["username"]);
 
-	$sql="SELECT* FROM users WHERE name = '$username' AND password = md5(CONCAT ('$password' , salt))";
+	$sql="SELECT * FROM users WHERE name = '$username' AND password = md5(CONCAT ('$password' , salt))";
 	if ($result=mysqli_query($link,$sql)) {
 		if (mysqli_num_rows($result) > 0) {
 			$code = 200;
