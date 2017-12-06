@@ -34,7 +34,6 @@
         <script>
 			
             $("#loginForm").submit(function(event) {
-			
                 event.preventDefault();
 				var type = $(this).attr('data-type');
                 var $form = $(this),
@@ -56,15 +55,11 @@
 				}
 				var postingUrl = (type == 'login')? 'login.php':'insert.php';
                 var posting = $.post(postingUrl, dataToSend);
-
-                posting.always(function(dataToSend) {
-					console.log(dataToSend);
-					window.location.replace("main.php");
-					//session destroy
-					//hello session
-					//redirect index php --> check if session alive and print hello "session" + logout(redirect to index.php). new page /games
-					//dataToSend = JSON.parse(dataToSend.responseText);
-					// $("#result").empty().text(dataToSend.message);
+                posting.always(function(data) {
+					var ret = JSON.parse(data);
+					if(ret.success){
+						window.location.replace("main.php");						
+					}
 				})
             });
             $("#actionBtn").on('click',function(event) {
@@ -100,7 +95,6 @@
 				var name = "<?=  isset($_SESSION['name']) ? $_SESSION['name'] : false  ?>";
 				if(name){
 					window.location.replace("main.php");
-					$('#logout').text('logout')
 				}
 			})
         </script>

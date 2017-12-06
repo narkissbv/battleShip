@@ -20,6 +20,18 @@
     <h2>Login</h2>		
     <main>Hello <span id="loggedUserName"><?=$_SESSION['name'];?></span></main>		
 		
-	 <div id="logout" data-type="logout" style="cursor:pointer">forgot password</div>
+	 <div id="logout" data-type="logout" style="cursor:pointer">logout</div>
+	 <script>
+		$('#logout').click(function(){
+			<?php
+				// remove all session variables
+				session_unset(); 
+
+				// destroy the session 
+				session_destroy(); 
+			?>
+			window.location.replace("index.php");
+		})
+	 </script>
 </body>
 </html>

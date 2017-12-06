@@ -17,8 +17,12 @@
 			$code = 200;
 			$response = array('success' => true, 'message' => 'login success');
 			session_start();
-			$_SESSION['id'] = $result['id'];
-			$_SESSION['name'] = $result['name'];
+				
+			while($row = $result->fetch_assoc()) {
+				$_SESSION['id'] = mysqli_insert_id($link);
+				$_SESSION['name'] = $row['name'];
+			}
+			
 		}
 		else {
 			$code = 404;
